@@ -1,1 +1,73 @@
 
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Sterownik DMX - Dokumentacja</title>
+    <style>
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            line-height: 1.6; 
+            max-width: 800px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+            color: #24292e; 
+        }
+        .container { 
+            background: #f6f8fa; 
+            border: 1px solid #d0d7de; 
+            border-radius: 8px; 
+            padding: 25px; 
+            margin: 20px 0; 
+        }
+        h1, h2 { border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }
+        .btn { 
+            display: inline-block; 
+            background: #2ea44f; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: 600; 
+            margin: 10px 10px 0 0; 
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #2c974b; }
+        code { 
+            background: #eff3f6; 
+            padding: 3px 6px; 
+            border-radius: 4px; 
+            font-family: monospace; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Sterownik Oświetlenia DMX</h1>
+    <p>Oficjalna strona projektu. Znajdziesz tu pełną dokumentację oraz najnowsze materiały do pobrania dla sprzętowego sterownika DMX.</p>
+    
+    <div class="container">
+        <h2>📥 Pliki do pobrania</h2>
+        <p>Pobierz instrukcję obsługi lub schematy (pliki muszą być wgrane do repozytorium):</p>
+        
+        <!-- Zmień nazwy plików w atrybucie href na takie, jakie wgrasz na GitHuba -->
+        <a href="Instrukcja_DMX.pdf" class="btn" download>📄 Instrukcja Obsługi (PDF)</a>
+        <a href="schemat.pdf" class="btn" download>⚙️ Schemat Połączeń (PDF)</a>
+    </div>
+
+    <h2>🛠️ Główne funkcje</h2>
+    <ul>
+        <li>Generowanie stabilnego sygnału DMX (transceiver MAX485)</li>
+        <li>Bezprzewodowa kontrola przez responsywny interfejs WWW</li>
+        <li>Błyskawiczna reakcja na zmiany parametrów z poziomu przeglądarki</li>
+    </ul>
+
+    <h2>📖 Szybki start (Tryb Access Point)</h2>
+    <ol>
+        <li>Podłącz zasilanie do sterownika.</li>
+        <li>Wyszukaj na smartfonie lub laptopie sieć Wi-Fi emitowaną przez urządzenie i połącz się z nią.</li>
+        <li>Otwórz przeglądarkę internetową i wejdź pod domyślny adres IP (np. <code>192.168.4.1</code>).</li>
+        <li>Panel sterowania załaduje się automatycznie.</li>
+    </ol>
+</body>
+</html>
