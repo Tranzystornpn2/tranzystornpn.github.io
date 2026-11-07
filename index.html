@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <title>Sterownik DMX - Dokumentacja</title>
+    <title>Sterownik DMX WEB - Dokumentacja</title>
     <style>
         body { 
             font-family: system-ui, -apple-system, sans-serif; 
@@ -40,34 +39,39 @@
             border-radius: 4px; 
             font-family: monospace; 
         }
+        .features li {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1>Sterownik Oświetlenia DMX</h1>
-    <p>Oficjalna strona projektu. Znajdziesz tu pełną dokumentację oraz najnowsze materiały do pobrania dla sprzętowego sterownika DMX.</p>
+    <h1>Sterownik Oświetlenia DMX WEB</h1>
+    <p>Oficjalna strona projektu. Znajdziesz tu pełną dokumentację, presety oraz pliki aktualizacyjne dla sprzętowego sterownika DMX.</p>
     
     <div class="container">
         <h2>📥 Pliki do pobrania</h2>
-        <p>Pobierz instrukcję obsługi lub schematy (pliki muszą być wgrane do repozytorium):</p>
+        <p>Pobierz instrukcję obsługi lub rozpakuj archiwa ZIP zawierające presety i pliki aktualizacji:</p>
         
-        <!-- Zmień nazwy plików w atrybucie href na takie, jakie wgrasz na GitHuba -->
+        <!-- Pamiętaj, aby na GitHuba wgrać pliki z dokładnie takimi samymi nazwami -->
         <a href="Instrukcja_DMX.pdf" class="btn" download>📄 Instrukcja Obsługi (PDF)</a>
-        <a href="schemat.pdf" class="btn" download>⚙️ Schemat Połączeń (PDF)</a>
+        <a href="Aktualizacja.zip" class="btn" download>🔄 Folder: Aktualizacja (.zip)</a>
+        <a href="Presety.zip" class="btn" download>🎛️ Folder: Gotowe Presety (.zip)</a>
     </div>
 
-    <h2>🛠️ Główne funkcje</h2>
-    <ul>
-        <li>Generowanie stabilnego sygnału DMX (transceiver MAX485)</li>
-        <li>Bezprzewodowa kontrola przez responsywny interfejs WWW</li>
-        <li>Błyskawiczna reakcja na zmiany parametrów z poziomu przeglądarki</li>
+    <h2>🛠️ Główne funkcje sterownika</h2>
+    <ul class="features">
+        <li>Generowanie stabilnego sygnału DMX (transceiver MAX485).</li>
+        <li>Błyskawiczna reakcja na zmiany dzięki komunikacji przez WebSockets.</li>
+        <li>Wbudowane zarządzanie presetami i adresowaniem głowic.</li>
+        <li>Wsparcie dla bezprzewodowych aktualizacji oprogramowania (OTA).</li>
     </ul>
 
     <h2>📖 Szybki start (Tryb Access Point)</h2>
     <ol>
         <li>Podłącz zasilanie do sterownika.</li>
         <li>Wyszukaj na smartfonie lub laptopie sieć Wi-Fi emitowaną przez urządzenie i połącz się z nią.</li>
-        <li>Otwórz przeglądarkę internetową i wejdź pod domyślny adres IP (np. <code>192.168.4.1</code>).</li>
-        <li>Panel sterowania załaduje się automatycznie.</li>
+        <li>Otwórz przeglądarkę internetową i wejdź pod domyślny adres IP (zazwyczaj <code>192.168.4.1</code>).</li>
+        <li>Panel sterowania załaduje się automatycznie, umożliwiając natychmiastową pracę.</li>
     </ol>
 </body>
 </html>
