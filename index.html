@@ -2,76 +2,376 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <title>Sterownik DMX WEB - Dokumentacja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sterownik DMX WEB - Oficjalna Dokumentacja i Pliki</title>
     <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border-glow: rgba(16, 185, 129, 0.2);
+            --accent-green: #10b981;
+            --accent-hover: #059669;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body { 
-            font-family: system-ui, -apple-system, sans-serif; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6; 
-            max-width: 800px; 
-            margin: 40px auto; 
-            padding: 0 20px; 
-            color: #24292e; 
+            padding: 0;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(6, 184, 212, 0.05) 0%, transparent 40%);
         }
-        .container { 
-            background: #f6f8fa; 
-            border: 1px solid #d0d7de; 
-            border-radius: 8px; 
-            padding: 25px; 
-            margin: 20px 0; 
+
+        /* Sekcja główna (Hero) */
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
-        h1, h2 { border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }
+
+        @media (max-width: 900px) {
+            header {
+                grid-template-columns: 1fr;
+                padding-top: 40px;
+                text-align: center;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, #a7f3d0, #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /* Zdjęcie bohatera (hero image) z efektem świecenia */
+        .hero-image-container {
+            position: relative;
+            border-radius: 16px;
+            padding: 8px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.1));
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Główne kontenery */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-green);
+            padding-left: 12px;
+        }
+
+        /* Siatka Pobierania */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .download-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.1);
+        }
+
+        .card-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            min-height: 48px;
+        }
+
         .btn { 
-            display: inline-block; 
-            background: #2ea44f; 
-            color: white; 
-            padding: 10px 20px; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent-green); 
+            color: #ffffff; 
+            padding: 12px 24px; 
             text-decoration: none; 
-            border-radius: 6px; 
-            font-weight: 600; 
-            margin: 10px 10px 0 0; 
-            transition: background 0.2s;
+            border-radius: 8px; 
+            font-weight: 700; 
+            transition: background-color 0.2s, transform 0.1s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover { background: #2c974b; }
+
+        .btn:hover { 
+            background: var(--accent-hover); 
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-cyan {
+            background: var(--accent-cyan);
+        }
+        .btn-cyan:hover {
+            background: #0891b2;
+        }
+
+        /* Funkcje i Szybki start */
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 850px) {
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(8px);
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .features-list li::before {
+            content: "✦";
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Kroki szybkiego startu */
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .step-list li {
+            counter-increment: steps;
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 24px;
+        }
+
+        .step-list li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 30px;
+            height: 30px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
         code { 
-            background: #eff3f6; 
+            background: rgba(0, 0, 0, 0.4); 
             padding: 3px 6px; 
             border-radius: 4px; 
             font-family: monospace; 
+            color: var(--accent-cyan);
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .features li {
-            margin-bottom: 8px;
+
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
-    <h1>Sterownik Oświetlenia DMX WEB</h1>
-    <p>Oficjalna strona projektu. Znajdziesz tu pełną dokumentację, presety oraz pliki aktualizacyjne dla sprzętowego sterownika DMX.</p>
-    
-    <div class="container">
-        <h2>📥 Pliki do pobrania</h2>
-        <p>Pobierz instrukcję obsługi lub rozpakuj archiwa ZIP zawierające presety i pliki aktualizacji:</p>
-        
-        <!-- Pamiętaj, aby na GitHuba wgrać pliki z dokładnie takimi samymi nazwami -->
-        <a href="Instrukcja_DMX.pdf" class="btn" download>📄 Instrukcja Obsługi (PDF)</a>
-        <a href="Aktualizacja.zip" class="btn" download>🔄 Folder: Aktualizacja (.zip)</a>
-        <a href="Presety.zip" class="btn" download>🎛️ Folder: Gotowe Presety (.zip)</a>
+
+    <header>
+        <div class="hero-text">
+            <span class="badge">PROJEKT DIY • DMX WEB</span>
+            <h1>Bezprzewodowy Sterownik DMX</h1>
+            <p>Szybki, stabilny, sterowany z poziomu dowolnej przeglądarki. Poznaj możliwości mobilnej kontroli oświetlenia estradowego i pobierz najnowsze oprogramowanie.</p>
+            <a href="#downloads" class="btn btn-cyan" style="display:inline-flex;">📥 Przejdź do pobierania</a>
+        </div>
+        <div class="hero-image-container">
+            <!-- Pamiętaj, aby wgrać zdjęcie i nazwać je "dmx_hero.png" -->
+            <img src="dmx_hero.png" alt="Sterownik DMX WEB na stanowisku realizatora" class="hero-image" />
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <section id="downloads">
+            <h2 class="section-title">📥 Oficjalne pliki do pobrania</h2>
+            <div class="download-grid">
+                
+                <!-- KARTA 1 -->
+                <div class="download-card">
+                    <div class="card-header">
+                        <h3>📄 Instrukcja Obsługi</h3>
+                        <p>Kompletny poradnik krok po kroku: pierwsze uruchomienie, opis interfejsu i konfiguracja sieci.</p>
+                    </div>
+                    <a href="Instrukcja_DMX.pdf" class="btn" download> Pobierz PDF</a>
+                </div>
+
+                <!-- KARTA 2 -->
+                <div class="download-card">
+                    <div class="card-header">
+                        <h3>🔄 Aktualizacja firmware</h3>
+                        <p>Najnowszy wsad do procesora. Pobierz plik, aby dokonać aktualizacji bezprzewodowej (OTA).</p>
+                    </div>
+                    <a href="Aktualizacja.bin" class="btn" download>Pobierz .BIN</a>
+                </div>
+
+                <!-- KARTA 3 -->
+                <div class="download-card">
+                    <div class="card-header">
+                        <h3>🎛️ Gotowe Presety</h3>
+                        <p>Zestaw gotowych konfiguracji i scen dla popularnych głowic i reflektorów DMX.</p>
+                    </div>
+                    <a href="Presety.zip" class="btn btn-cyan" download>Pobierz .ZIP</a>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="info-section">
+            
+            <!-- FUNKCJE -->
+            <section class="info-card">
+                <h2 class="section-title">⚙️ Możliwości</h2>
+                <ul class="features-list">
+                    <li><strong>Transceiver MAX485</strong> - generuje stabilny, profesjonalny sygnał DMX.</li>
+                    <li><strong>Komunikacja WebSockets</strong> - natychmiastowa reakcja i zerowe opóźnienia w przeglądarce.</li>
+                    <li><strong>Wygodny WebUI</strong> - responsywny panel sterowania, który działa na telefonie, tablecie i PC.</li>
+                    <li><strong>Zarządzanie Presetami</strong> - szybki zapis i wywoływanie gotowych ustawień oświetlenia.</li>
+                    <li><strong>Aktualizacje OTA</strong> - możliwość bezprzewodowego wgrywania nowego oprogramowania.</li>
+                </ul>
+            </section>
+
+            <!-- SZYBKI START -->
+            <section class="info-card">
+                <h2 class="section-title">📖 Szybki start</h2>
+                <ol class="step-list">
+                    <li>
+                        <strong>Zasilenie urządzenia:</strong> Podłącz zasilanie do kontrolera. Po chwili uruchomi on własną sieć bezprzewodową.
+                    </li>
+                    <li>
+                        <strong>Połączenie Wi-Fi:</strong> Wyszukaj na telefonie, tablecie lub komputerze sieć Wi-Fi emitowaną przez sterownik i połącz się z nią.
+                    </li>
+                    <li>
+                        <strong>Otwarcie Panelu:</strong> Uruchom dowolną przeglądarkę internetową i wpisz adres IP: <code>192.168.4.1</code>.
+                    </li>
+                    <li>
+                        <strong>Praca:</strong> Panel kontrolny załaduje się automatycznie – możesz natychmiast zarządzać oświetleniem.
+                    </li>
+                </ol>
+            </section>
+
+        </div>
+
     </div>
 
-    <h2>🛠️ Główne funkcje sterownika</h2>
-    <ul class="features">
-        <li>Generowanie stabilnego sygnału DMX (transceiver MAX485).</li>
-        <li>Błyskawiczna reakcja na zmiany dzięki komunikacji przez WebSockets.</li>
-        <li>Wbudowane zarządzanie presetami i adresowaniem głowic.</li>
-        <li>Wsparcie dla bezprzewodowych aktualizacji oprogramowania (OTA).</li>
-    </ul>
+    <footer>
+        <p>© 2026 Sterownik Oświetlenia DMX WEB. Wszystkie prawa zastrzeżone.</p>
+    </footer>
 
-    <h2>📖 Szybki start (Tryb Access Point)</h2>
-    <ol>
-        <li>Podłącz zasilanie do sterownika.</li>
-        <li>Wyszukaj na smartfonie lub laptopie sieć Wi-Fi emitowaną przez urządzenie i połącz się z nią.</li>
-        <li>Otwórz przeglądarkę internetową i wejdź pod domyślny adres IP (zazwyczaj <code>192.168.4.1</code>).</li>
-        <li>Panel sterowania załaduje się automatycznie, umożliwiając natychmiastową pracę.</li>
-    </ol>
 </body>
 </html>
